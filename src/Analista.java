@@ -58,8 +58,11 @@ public class Analista extends Funcionario {
 	 * @return valor das horas extras
 	 */
 	private double valorHorasExtras() {
-		//TODO
-		return 0;
+		if(horasExtras > MAX_HORAS_EXTRAS){
+			horasExtras = MAX_HORAS_EXTRAS;
+		}
+		double valor = horasExtras * (SALARIO_ANALISTA * FRACAO_HORA);
+		return valor;
 	}
 
 	/**
@@ -69,7 +72,7 @@ public class Analista extends Funcionario {
 	 * @return total de horas extras acumuladas após a atualização
 	 */
 	public double addHorasExtras(double quantidade) {
-		if(quantidade > 0 && horasExtras < MAX_HORAS_EXTRAS)
+		if(quantidade > 0 && horasExtras < MAX_HORAS_EXTRAS && horasExtras+quantidade < MAX_HORAS_EXTRAS)
 			horasExtras += quantidade;
 		return horasExtras;
 	}
@@ -80,8 +83,8 @@ public class Analista extends Funcionario {
 	 * @return valor total pago ao analista
 	 */
 	public double registrarPagamento() {
-		//TODO
-		return 0;
+		ultimoSalario = (double)SALARIO_ANALISTA + valorHorasExtras(); 
+		return ultimoSalario;
 	}
 
 	/**

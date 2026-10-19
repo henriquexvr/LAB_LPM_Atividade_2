@@ -78,8 +78,15 @@ public class Projeto {
 	 * @return quantidade de dias desde a finalização, ou {@code -1} se o projeto ainda não foi finalizado
 	 */
 	public int diasAposFinalizacao() {
-		//TODO
-		return 0;
+		int diasFinalizado = -1;
+		if(projetoNaoFinalizado()){
+			diasFinalizado = finalizadoEm.compareTo(LocalDate.now());
+		}
+		return diasFinalizado;
+	}
+
+	private boolean projetoNaoFinalizado(){
+		return finalizadoEm == null;
 	}
 
 	/**
